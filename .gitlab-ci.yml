@@ -1,0 +1,11 @@
+include:
+  project: templates/ci
+  ref: main
+  file:
+    - frontend/npm-publish.yml
+    - pages.yml
+
+
+stages:
+  - publish
+  - pages

@@ -1,0 +1,37 @@
+{
+  "name": "@frontend/branch-lint",
+  "version": "1.0.0",
+  "description": "CLI-утилита проверяющий соответствие имени ветки формату описанного в спецификации",
+  "homepage": "https://frontend.localtrip.ru/tools/branch-lint/",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.localtrip.ru:frontend/tools/branch-lint.git"
+  },
+  "author": "LTTeam",
+  "type": "module",
+  "bin": {
+    "branch-lint": "./index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "docs:build": "vitepress build docs",
+    "docs:dev": "vitepress dev docs",
+    "library:release": "semantic-release"
+  },
+  "devDependencies": {
+    "@semantic-release/commit-analyzer": "13.0.1",
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/npm": "12.0.1",
+    "@semantic-release/release-notes-generator": "14.0.3",
+    "@templates/semantic-release-mattermost": "1.1.0",
+    "conventional-changelog-conventionalcommits": "8.0.0",
+    "semantic-release": "24.2.3",
+    "vitepress": "2.0.0-alpha.2"
+  },
+  "engines": {
+    "node": ">=22.x",
+    "npm": ">=10"
+  }
+}
