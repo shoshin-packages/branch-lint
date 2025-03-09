@@ -1,6 +1,14 @@
 #!/usr/bin/env node
 import { execSync } from 'node:child_process'
 
+function isInCIEnvironment() {
+  return Boolean(
+    process.env.CI ||
+    process.env.GITLAB_CI ||
+    process.env.JENKINS_URL ||
+    process.env.GITHUB_ACTIONS
+  )
+}
 
 function isGitRepo() {
   try {
@@ -41,6 +49,11 @@ function exitWithError(message) {
 function checkBranchName() {
   if (!isGitRepo()) {
     exitWithError(' ❌ Текущая директория не является GIT-репозиторием')
+  }
+
+  if (isInCIEnvironment()) {
+    exitWithSuccess(' ✅ Проверка пропущена (CI-окружение)')
+    return
   }
 
   let localBranchName
