@@ -10,6 +10,14 @@ function isInCIEnvironment() {
   )
 }
 
+// Теги пропускаем — они создаются semantic-release и не должны проходить проверку
+function isTagEvent() {
+  return Boolean(
+    process.env.GITHUB_REF_TYPE === 'tag' ||
+    process.env.CI_COMMIT_TAG
+  )
+}
+
 function isGitRepo() {
   try {
     execSync('git rev-parse --is-inside-work-tree', {
@@ -17,9 +25,31 @@ function isGitRepo() {
     })
 
     return true
-  } catch (error) {
+  } catch {
     return false
   }
+}
+
+function getBranchName() {
+  // GitHub Actions: PR (название ветки источника)
+  if (process.env.GITHUB_HEAD_REF) {
+    return process.env.GITHUB_HEAD_REF
+  }
+
+  // GitHub Actions: push в ветку
+  if (process.env.GITHUB_REF_NAME) {
+    return process.env.GITHUB_REF_NAME
+  }
+
+  // GitLab CI
+  if (process.env.CI_COMMIT_BRANCH) {
+    return process.env.CI_COMMIT_BRANCH
+  }
+
+  // Локально — через git
+  return execSync('git rev-parse --abbrev-ref HEAD')
+    .toString()
+    .trim()
 }
 
 function isValidBranchName(branchName) {
@@ -47,28 +77,25 @@ function exitWithError(message) {
 
 
 function checkBranchName() {
-  if (!isGitRepo()) {
+  if (isTagEvent()) {
+    exitWithSuccess(' ✅ Проверка пропущена (тег)')
+  }
+
+  if (!isInCIEnvironment() && !isGitRepo()) {
     exitWithError(' ❌ Текущая директория не является GIT-репозиторием')
   }
 
-  if (isInCIEnvironment()) {
-    exitWithSuccess(' ✅ Проверка пропущена (CI-окружение)')
-    return
-  }
-
-  let localBranchName
+  let branchName
   try {
-    localBranchName = execSync('git rev-parse --abbrev-ref HEAD')
-      .toString()
-      .trim()
-  } catch (error) {
+    branchName = getBranchName()
+  } catch {
     exitWithError(' ❌ Не удалось получить имя текущей ветки')
   }
 
-  if (!isValidBranchName(localBranchName)) {
+  if (!isValidBranchName(branchName)) {
     exitWithError(`
 ---------
- ❌ Некорректное название ветки
+ ❌ Некорректное название ветки: "${branchName}"
 Название ветки в этом проекте должно соответствовать этому формату:
 (тип)/(идентификатор задачи)-(описание)
   - feat/FR-303-add-user-authentication
@@ -86,7 +113,7 @@ function checkBranchName() {
     )
   }
 
-  exitWithSuccess(` ✅ Ветка "${localBranchName}" соответствует правилам именования`)
+  exitWithSuccess(` ✅ Ветка "${branchName}" соответствует правилам именования`)
 }
 
 

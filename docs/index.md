@@ -1,14 +1,23 @@
-# @frontend/branch-lint
-CLI-утилита проверяющий соответствие имени ветки формату [описанного в спецификации](https://frontend.localtrip.ru/specs/git/branches/naming.html)
+# @shoshin-packages/branch-lint
+CLI-утилита для проверки соответствия имени ветки формату conventional branch naming.
+
+Допустимые форматы:
+- `feat/FR-303-add-user-authentication`
+- `fix/FR-10-login-issue`
+- `refactor/code-refactoring`
+- `dev`, `main`, `master`
 
 
 ## Установка
-::: danger `.npmrc`
-Для установки зависимостей потребуется приватный ключ в `.npmrc` для `npm registry`
+::: info `.npmrc`
+Пакет опубликован в GitHub Packages. Добавьте в `.npmrc`:
+```
+@shoshin-packages:registry=https://npm.pkg.github.com
+```
 :::
 
 ```bash
-npm i @frontend/branch-lint --save-dev
+npm i @shoshin-packages/branch-lint --save-dev
 ```
 
 

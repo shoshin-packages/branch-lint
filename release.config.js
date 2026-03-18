@@ -29,8 +29,8 @@ export default {
         ]
       }
     ],
-    '@templates/semantic-release-mattermost',
     '@semantic-release/npm',
+    '@semantic-release/github',
     ['@semantic-release/git', {
       assets: ['package.json'],
       message: 'chore: ${nextRelease.version} [skip ci]'
@@ -102,6 +102,7 @@ export default {
     ]
   ],
   publishConfig: {
+    registry: 'https://npm.pkg.github.com',
     access: 'public'
   }
 }
