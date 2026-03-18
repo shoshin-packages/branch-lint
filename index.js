@@ -31,7 +31,7 @@ function isGitRepo() {
 }
 
 function getBranchName() {
-  // GitHub Actions: PR (название ветки источника)test
+  // GitHub Actions: PR (название ветки источника)
   if (process.env.GITHUB_HEAD_REF) {
     return process.env.GITHUB_HEAD_REF
   }
