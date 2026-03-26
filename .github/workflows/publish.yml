@@ -8,6 +8,6 @@ on:
 
 jobs:
   publish:
-    uses: shoshin-packages/ci/.github/workflows/library/publish.yml@main
+    uses: shoshin-packages/ci/.github/workflows/library-publish.yml@main
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}

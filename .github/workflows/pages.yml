@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   build:
-    uses: shoshin-packages/ci/.github/workflows/docs/build.yml@main
+    uses: shoshin-packages/ci/.github/workflows/docs-build.yml@main
     with:
       # VitePress собирает в корневой public/ (outDir: '../public' в config.ts)
       output-dir: public
@@ -20,7 +20,7 @@ jobs:
 
   deploy:
     needs: build
-    uses: shoshin-packages/ci/.github/workflows/docs/publish.yml@main
+    uses: shoshin-packages/ci/.github/workflows/docs-publish.yml@main
     with:
       docs-artifact-name: ${{ needs.build.outputs.artifact-name }}
     secrets:
