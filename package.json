@@ -1,6 +1,6 @@
 {
   "name": "@shoshin-packages/branch-lint",
-  "version": "1.0.3-beta.4",
+  "version": "1.0.3-beta.5",
   "description": "CLI-утилита проверяющий соответствие имени ветки формату описанного в спецификации",
   "homepage": "https://shoshin-packages.github.io/branch-lint/",
   "repository": {
