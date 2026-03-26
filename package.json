@@ -16,6 +16,10 @@
     "index.js"
   ],
   "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
     "docs:build": "vitepress build docs",
     "docs:dev": "vitepress dev docs",
     "library:release": "semantic-release"
@@ -26,13 +30,16 @@
     "@semantic-release/github": "11.0.1",
     "@semantic-release/npm": "12.0.1",
     "@semantic-release/release-notes-generator": "14.0.3",
+    "@vitest/coverage-v8": "^4.1.1",
+    "@vitest/ui": "^4.1.1",
     "conventional-changelog-conventionalcommits": "8.0.0",
     "semantic-release": "24.2.3",
-    "vitepress": "2.0.0-alpha.2"
+    "vitepress": "2.0.0-alpha.2",
+    "vitest": "^4.1.1"
   },
   "engines": {
     "node": ">=22.x",
-    "npm": ">=10"
+    "npm": ">=11"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
