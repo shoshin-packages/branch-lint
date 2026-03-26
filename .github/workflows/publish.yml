@@ -6,6 +6,10 @@ on:
       - master
       - dev
 
+permissions:
+  contents: write
+  packages: write
+
 jobs:
   publish:
     uses: shoshin-packages/ci/.github/workflows/library-publish.yml@main
