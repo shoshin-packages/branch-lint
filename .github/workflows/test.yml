@@ -1,0 +1,20 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - dev
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    uses: shoshin-packages/ci/.github/workflows/core-test.yml@main
+    with:
+      test-script: test
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
