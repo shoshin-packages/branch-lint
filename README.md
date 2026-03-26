@@ -122,3 +122,51 @@ lint-branch:
 - Node.js `>=22`
 - npm `>=10`
 - git (только для локального запуска)
+
+## 🧪 Разработка и тестирование
+
+Проект использует [Vitest](https://vitest.dev/) для тестирования.
+
+### Команды
+
+```bash
+npm test              # Запустить тесты
+npm run test:watch    # Watch mode для TDD
+npm run test:ui       # UI интерфейс для тестов
+npm run test:coverage # Coverage отчёт
+```
+
+### Покрытие тестами
+
+- ✅ 20 тестов
+- ✅ Валидация всех типов веток
+- ✅ CI окружения (GitHub Actions, GitLab CI)
+- ✅ Edge cases и сообщения об ошибках
+- ✅ Exit codes
+
+### Вклад в проект
+
+1. Форк репозитория
+2. Создай feature ветку (`feat/my-new-feature`)
+3. Добавь тесты для новой функциональности
+4. Убедись что все тесты проходят (`npm test`)
+5. Коммит с Conventional Commits (`feat: add ...`)
+6. Push и создай Pull Request
+
+**Важно:** Название ветки должно соответствовать формату, иначе CI упадёт! 😉
+
+## 📚 Документация
+
+Полная документация доступна на [GitHub Pages](https://shoshin-packages.github.io/branch-lint/).
+
+## 📝 Changelog
+
+Все изменения документируются в [Releases](https://github.com/shoshin-packages/branch-lint/releases).
+
+Релизы публикуются автоматически через [semantic-release](https://github.com/semantic-release/semantic-release) при push в ветки:
+- `main` — production релизы
+- `dev` — beta релизы
+
+## 📄 Лицензия
+
+MIT © shoshin-packages
